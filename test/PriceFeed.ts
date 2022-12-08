@@ -23,6 +23,12 @@ describe("PriceFeeder", function () {
     await contract.setPrice(2000);
     expect(await contract._price()).to.equal(2000);
   });
+  it("prevents non-admin from updating the price", async function () {
+    const { contract, other } = await loadFixture(launchPriceFeeder);
+    await expect(contract.connect(other).setPrice(2000)).revertedWith(
+      "Ownable: caller is not the owner"
+    );
+  });
   it("emits PriceUpdate event when price is updated", async function () {
     const { contract } = await loadFixture(launchPriceFeeder);
     expect(contract.setPrice(2000))
