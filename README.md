@@ -13,5 +13,5 @@ npx hardhat run scripts/pricefeed-and-forward.ts
 ```
 
 ## Goerli Instances
-- [Price Feed Contract]()
-- [Forward Contract](https://goerli.etherscan.io/address/0xf095220addedee7e6101c5cd768245a4df4d8022)
+- [Price Feed Contract](https://goerli.etherscan.io/address/0xb80EB65E780699Cd434Efe525C0aAba4d82c74D7)
+- [Forward Contract](https://goerli.etherscan.io/address/0x35d4Bad2B2E36226fbEd825e54Ca04252d413365)
