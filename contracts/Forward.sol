@@ -10,7 +10,10 @@ import "./ForwardBase.sol";
  * @dev ForwardBase but with a constructor
  */
 contract Forward is ForwardBase {
-    constructor(address priceFeedAddress, uint unlockTime) payable ForwardBase() {
+    constructor(
+        address priceFeedAddress,
+        uint unlockTime
+    ) payable ForwardBase() {
         initialize(priceFeedAddress);
         propose(unlockTime);
     }

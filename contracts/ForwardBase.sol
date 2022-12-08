@@ -28,8 +28,6 @@ contract ForwardBase is Initializable {
     event ForwardLocked();
     event ForwardUnlocked();
 
-
-
     /**
      * @dev This sets the PriceFeed from the provided address to initialize the contract.
      */
@@ -37,7 +35,6 @@ contract ForwardBase is Initializable {
     function initialize(address priceFeedAddress) public initializer {
         _priceFeed = PriceFeed(priceFeedAddress);
     }
-
 
     /**
      * @dev Begins the `Hedge` agreement where a price feeder is set for sourcing the price
@@ -49,7 +46,7 @@ contract ForwardBase is Initializable {
      *
      * The current USD price of ETH is saved to the contract, locking the hedging party into
      */
-    function propose(uint unlockTime) payable public {
+    function propose(uint unlockTime) public payable {
         require(
             msg.value >= 100_000_000 gwei,
             "Amount to hedge must be at least 0.1 ETH"
