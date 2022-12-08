@@ -1,6 +1,7 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import {alchemyApiKey, mnemonic} from "./secret"
+import "@openzeppelin/hardhat-upgrades";
+import { alchemyApiKey, mnemonic } from "./secret";
 
 const config: HardhatUserConfig = {
   networks: {
@@ -14,8 +15,8 @@ const config: HardhatUserConfig = {
     sources: "./contracts",
     tests: "./test",
     cache: "./cache",
-    artifacts: "./artifacts"
-  }
+    artifacts: "./artifacts",
+  },
 };
 
 export default config;

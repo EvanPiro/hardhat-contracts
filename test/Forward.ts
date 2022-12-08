@@ -103,6 +103,16 @@ describe("Forward", function () {
       );
       expect(await forward._price()).to.equal(1000);
     });
+    it("cannot call initialize after contract is initialized", async function () {
+      const unlockTime = (await time.latest()) + 60 * 60 * 2;
+
+      const { forward, priceFeed } = await loadFixture(
+        setUpContract.bind(null, utils.parseEther(".1"), unlockTime, 1000)
+      );
+      await expect(forward.initialize(priceFeed.address)).revertedWith(
+        "Initializable: contract is already initialized"
+      );
+    });
     it("emits the ForwardOpened event", async function () {
       const { Forward, priceFeed } = await loadFixture(
         setUpDeploy.bind(null, 1000)
@@ -193,18 +203,6 @@ describe("Forward", function () {
         [party, counterparty],
         [utils.parseEther(".5"), utils.parseEther("1.5")]
       );
-    });
-    it("destroys contract", async function () {
-      const { forward, party, counterparty } = await loadFixture(
-        setUpUnlockable.bind(null, utils.parseEther("1"), 10, 20)
-      );
-      await forward.unlock();
-      await expect(forward._party()).revertedWithoutReason();
-      await expect(forward._counterparty()).revertedWithoutReason();
-      await expect(forward._amount()).revertedWithoutReason();
-      await expect(forward._unlockTime()).revertedWithoutReason();
-      await expect(forward._price()).revertedWithoutReason();
-      await expect(forward._priceFeed()).revertedWithoutReason();
     });
     it("emits the HedgeUnlocked event", async function () {
       const { forward, party, counterparty } = await loadFixture(
