@@ -58,6 +58,6 @@ contract TrivialV2 {
     uint256[43] __gap;
 }
 ```
-Note that each data type as its own rules for how it's stored in gap.
+Note that each data type has its own rules for how it's stored.
 
 [Reference](https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable#storage-gaps)

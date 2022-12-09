@@ -17,9 +17,7 @@
     "axios": "^1.2.1",
     "hardhat": "^2.12.3",
     "prettier": "^2.8.0",
-    "prettier-plugin-solidity": "^1.0.0"
-  },
-  "dependencies": {
+    "prettier-plugin-solidity": "^1.0.0",
     "@openzeppelin/contracts-upgradeable": "^4.8.0"
   }
 }
