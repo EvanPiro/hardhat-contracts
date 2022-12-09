@@ -1,5 +1,5 @@
 # Abstract Contracts
-An abstract contract is a contract that provides one or more methods that are not implemented. A non-implement method is a function definition without a body i.e `{}`. 
+An abstract contract is a contract that provides one or more methods that are not implemented. A non-implemented method is a function definition without a body i.e `{}`. 
 
 Note that the method without a body needs to be marked as `virtual`.
 ```solidity
