@@ -37,7 +37,7 @@ contract Stateful {
     }
 }
 ```
-In `hardhat`, the address can be loaded into a contract factory instance via the following:
+In `hardhat`, the library can be deploy as a contract and the address can be loaded into a contract factory instance via the following:
 ```typescript
   const Contract = await ethers.getContractFactory("Stateful", {
     libraries: { DatabaseAPI: library.address },

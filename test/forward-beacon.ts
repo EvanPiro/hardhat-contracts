@@ -1,23 +1,39 @@
 import { expect } from "chai";
-import { ethers, upgrades } from "hardhat";
+import { artifacts, ethers, upgrades } from "hardhat";
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { time } from "@nomicfoundation/hardhat-network-helpers";
+import { getBeaconProxyFactory } from "@openzeppelin/hardhat-upgrades/dist/utils";
 
 describe("Forward Beacon", function () {
-  async function deployAndUpdateBeaconProxies() {
-    const ForwardBase = await ethers.getContractFactory("ForwardBase");
+  async function deployPriceFeed() {
     const PriceFeed = await ethers.getContractFactory("PriceFeed");
-
     const priceFeed = await PriceFeed.deploy(120000);
-
     await priceFeed.deployed();
-
+    return {
+      priceFeed,
+    };
+  }
+  async function deployForwardBeacon() {
+    const ForwardBase = await ethers.getContractFactory("ForwardBase");
     const forwardBeacon = await upgrades.deployBeacon(ForwardBase);
-
     await forwardBeacon.deployed();
+    return {
+      forwardBeacon,
+      ForwardBase,
+    };
+  }
+  async function deployBeaconProxyContract() {
+    const { priceFeed } = await deployPriceFeed();
+    const { forwardBeacon, ForwardBase } = await deployForwardBeacon();
+    const BeaconProxy = await artifacts.readArtifact("BeaconProxy");
+
+    console.log(BeaconProxy);
+  }
+  async function deployAndUpdateBeaconProxies() {
+    const { priceFeed } = await deployPriceFeed();
+    const { forwardBeacon, ForwardBase } = await deployForwardBeacon();
 
     const [a1, a2, b1, b2, c1, c2] = await ethers.getSigners();
-
     const deployAndStartProxy = async (user1: any, user2: any) => {
       const contract = await upgrades.deployBeaconProxy(
         forwardBeacon,
@@ -54,7 +70,7 @@ describe("Forward Beacon", function () {
       proxy3: await ForwardBaseUpdateTest.attach(proxy3.address),
     };
   }
-  it("deploys and updates three beacon proxies", async function () {
+  it("deploys and updates three beacon proxies with hardhat library functions", async function () {
     const { proxy1, proxy2, proxy3 } = await loadFixture(
       deployAndUpdateBeaconProxies
     );

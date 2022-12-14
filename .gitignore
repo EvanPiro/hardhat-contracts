@@ -13,3 +13,4 @@ artifacts
 secret.ts
 
 .openzeppelin/unknown-*.json
+data
