@@ -17,7 +17,7 @@ contract SaaS is Ownable {
     address[] addresses;
 
     /**
-     * The user that constructs the contract becomes the owner,
+     * @dev The user that constructs the contract becomes the owner,
      * must provide the rate, which is wei per second to charge for service,
      * and the interval, which is the minimum seconds to purchase for service.
      */
