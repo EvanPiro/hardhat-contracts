@@ -29,7 +29,7 @@ contract SaaS is Ownable {
     }
 
     /**
-     * @dev `isPaidUp`` checks if a subscriber has paid the per second charge
+     * @dev `isPaidUp` checks if a subscriber has paid the per second charge
      * until the current block time.
      */
     function isPaidUp(address subscriber) public view returns (bool) {
