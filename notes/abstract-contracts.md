@@ -16,4 +16,4 @@ contract Lock is Lockable {
 ```
 Not that if the implementing contract were to not implement all of the functions in the abstract contract, the implementing contract will need to be marked as abstract.
 
-[Reference]("https://docs.soliditylang.org/en/v0.8.17/contracts.html#abstract-contracts")
+[Reference]("https://docs.soliditylang.org/en/v0.8.17/contracts.html#abstract-contracts").
