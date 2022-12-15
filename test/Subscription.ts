@@ -2,10 +2,10 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { loadFixture, time } from "@nomicfoundation/hardhat-network-helpers";
 
-describe("SaaS", function () {
+describe("Subscription", function () {
   async function launchContract(rate: number, interval: number) {
     const [owner, subscriber, other] = await ethers.getSigners();
-    const Contract = await ethers.getContractFactory("SaaS");
+    const Contract = await ethers.getContractFactory("Subscription");
 
     const contract = await Contract.deploy(rate, interval);
     await contract.deployed();
@@ -19,13 +19,13 @@ describe("SaaS", function () {
 
   describe("Deploy", function () {
     it("disallows rate of 0", async function () {
-      const Contract = await ethers.getContractFactory("SaaS");
+      const Contract = await ethers.getContractFactory("Subscription");
       await expect(Contract.deploy(0, 1)).revertedWith(
         "Rate must be greater than 0"
       );
     });
     it("disallows interval of 0", async function () {
-      const Contract = await ethers.getContractFactory("SaaS");
+      const Contract = await ethers.getContractFactory("Subscription");
       await expect(Contract.deploy(1, 0)).revertedWith(
         "Interval must be greater than 0"
       );
@@ -118,6 +118,24 @@ describe("SaaS", function () {
 
       await expect(await contract.getAddressByIndex(0)).to.equal(
         subscriber.address
+      );
+    });
+    it("does not return the same address from different indexes", async function () {
+      const { contract, subscriber, other } = await loadFixture(
+        launchContract.bind(null, 1, 1)
+      );
+
+      await contract.connect(subscriber).pay({ value: 1000 });
+      await contract.connect(subscriber).pay({ value: 1000 });
+
+      await expect(contract.getAddressByIndex(1)).revertedWith(
+        "Subscriber not found"
+      );
+      await expect(contract.getAddressByIndex(2)).revertedWith(
+        "Subscriber not found"
+      );
+      await expect(contract.getAddressByIndex(3)).revertedWith(
+        "Subscriber not found"
       );
     });
   });

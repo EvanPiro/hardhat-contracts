@@ -2,19 +2,22 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
 /**
- * @dev The SaaS contract enables an admin to manage subscriptions.
+ * @dev The Subscription contract enables an admin to manage subscriptions.
  *
  * A subscription consists of an address and the number of seconds of usage the
  * user has paid. The owner sets the rate in wei per second and the interval,
  * which is the minimum number of seconds a user can purchase.
  */
-contract SaaS is Ownable {
+contract Subscription is Ownable {
+    using EnumerableSet for EnumerableSet.AddressSet;
+
     mapping(address => uint256) public _subscriptions;
     uint256 public _rate;
     uint256 public _interval;
-    address[] addresses;
+    EnumerableSet.AddressSet private addresses;
 
     /**
      * @dev The user that constructs the contract becomes the owner,
@@ -45,7 +48,7 @@ contract SaaS is Ownable {
             msg.value * _rate >= _interval,
             "Fee times the rate must be greater than the interval"
         );
-        addresses.push(msg.sender);
+        addresses.add(msg.sender);
         _subscriptions[msg.sender] = block.timestamp + _interval;
     }
 
@@ -64,7 +67,7 @@ contract SaaS is Ownable {
      * user data.
      */
     function getAddressByIndex(uint index) public view returns (address) {
-        require(index < addresses.length, "Subscriber not found");
-        return addresses[index];
+        require(index < addresses.length(), "Subscriber not found");
+        return addresses.at(index);
     }
 }

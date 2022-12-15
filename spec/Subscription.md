@@ -1,4 +1,4 @@
-# Software as a Service Contract (SaaS)
+# Subscription Contract
 
 The following spec describes a contract that supports a subscription based service where subscribers pay for intervals of time. 
 
