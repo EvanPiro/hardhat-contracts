@@ -99,4 +99,26 @@ describe("SaaS", function () {
       expect(contract.collect()).changeEtherBalance(owner, 1000);
     });
   });
+  describe("GetAddressByIndex", function () {
+    it("gets no address from a non-existent index", async function () {
+      const { contract, subscriber } = await loadFixture(
+        launchContract.bind(null, 1, 1)
+      );
+
+      await expect(contract.getAddressByIndex(0)).revertedWith(
+        "Subscriber not found"
+      );
+    });
+    it("gets an address from an existing index", async function () {
+      const { contract, subscriber, other } = await loadFixture(
+        launchContract.bind(null, 1, 1)
+      );
+
+      await contract.connect(subscriber).pay({ value: 1000 });
+
+      await expect(await contract.getAddressByIndex(0)).to.equal(
+        subscriber.address
+      );
+    });
+  });
 });
