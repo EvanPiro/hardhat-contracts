@@ -7,8 +7,10 @@ import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/I
 
 /**
  * @title Forward
- * @dev This contract supports setting up a forward agreement with a party hedging against the price of ETH and a
+ * @author Evan Piro
+ * @notice This contract supports setting up a forward agreement with a party hedging against the price of ETH and a
  * counterparty to counter the hedge.
+ * @dev
  * The following steps are implemented:
  * 1. Party A sends n ETH. The current USD price of ETH, p0, is captured.
  * 2. Party B sends n ETH. The funds are now locked until the unlock time.

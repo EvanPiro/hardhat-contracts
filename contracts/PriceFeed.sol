@@ -5,6 +5,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title PriceFeed
+ * @author Evan Piro
+ * @notice You can use this contract for setting up an on-chain price feed data source.
  * @dev The `PriceFeed` contract creates a data source for USD value of ETH to be
  * used on-chain. The current implementation relies on a trusted operator.
  */

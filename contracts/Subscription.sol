@@ -5,9 +5,10 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
 /**
- * @dev The Subscription contract enables an admin to manage subscriptions.
- *
- * A subscription consists of an address and the number of seconds of usage the
+ * @title Subscription
+ * @author Evan Piro
+ * @notice The Subscription contract enables an admin to manage subscriptions.
+ * @dev A subscription consists of an address and the number of seconds of usage the
  * user has paid. The owner sets the rate in wei per second and the interval,
  * which is the minimum number of seconds a user can purchase.
  */

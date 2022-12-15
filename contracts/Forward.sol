@@ -5,6 +5,8 @@ import "./ForwardBase.sol";
 
 /**
  * @title Forward
+ * @author Evan Piro
+ * @notice Contract for setting up forward hedge agreements
  * @dev ForwardBase but with a constructor
  */
 contract Forward is ForwardBase {
