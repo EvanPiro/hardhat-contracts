@@ -1,9 +1,7 @@
 # Contracts
-
 A collection of solidity contracts and tests.
 
 ## Commands
-
 ```shell
 npx hardhat help
 npx hardhat test
