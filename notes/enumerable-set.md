@@ -1,0 +1,3 @@
+# EnumerableSet
+
+The EnumerableSet struct provided in `@openzeppelin/contracts/utils/structs/EnumerableSet.sol` is useful for managing lists of unique items and retrieving them by an index. This is employed in the [`Subscription.sol`](./contracts/Subscription.sol) where the owner of the contract can retrieve the list of unique addresses of users who have sign up for subscriptions. Subscribers can also instantiate their account and pay idempotently through employing the `.add` method on the `EnumerableSet`.
