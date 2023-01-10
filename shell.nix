@@ -1,6 +1,8 @@
 pkgs:
 pkgs.mkShell {
   buildInputs = with pkgs; [
-    nodejs
   ];
+  shellHook = ''
+    yarn hardhat test
+  '';
 }

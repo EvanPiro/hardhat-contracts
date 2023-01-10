@@ -18,6 +18,15 @@
         # Add set conforming to flake schema here:
         devShells.${system}.default = mkDevShell pkgs;
         formatter.${system} = pkgs.alejandra;
+        packages.${system}.default = with pkgs; mkYarnPackage {
+          name = "tests";
+          src = ./.;
+          packageJSON = ./package.json;
+          yarnLock = ./yarn.lock;
+          yarnPostBuild = ''
+            ${yarn}/bin/yarn hardhat test
+          '';
+        };
       }))
 
       (builtins.foldl' nixpkgs.lib.recursiveUpdate {})
