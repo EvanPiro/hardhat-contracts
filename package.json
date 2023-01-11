@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "npx prettier --write 'contracts/**/*.sol'"
+    "lint": "npx prettier --write 'contracts/**/*.sol'",
+		"test": "yarn hardhat test"
   },
   "author": "emanegux",
   "license": "ISC",
