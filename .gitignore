@@ -14,3 +14,4 @@ secret.ts
 
 .openzeppelin/unknown-*.json
 data
+.DS_Store
