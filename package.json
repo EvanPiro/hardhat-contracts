@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "npx prettier --write 'contracts/**/*.sol'"
+    "lint": "npx prettier --write 'contracts/**/*.sol'",
+    "test": "yarn hardhat test"
   },
   "author": "emanegux",
   "license": "ISC",
@@ -35,5 +36,8 @@
     "typechain": "^8.1.1",
     "typescript": "^4.9.4"
   },
-	"bin": "test.sh"
+  "dependencies": {
+    "@types/jest": "^29.2.5",
+    "@types/mocha": "^10.0.1"
+  }
 }
