@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import { PriceFeed } from "./PriceFeed.sol";
-import { AddressUpgradeable } from "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
-import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {PriceFeed} from "./PriceFeed.sol";
+import {AddressUpgradeable} from "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
+import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 /**
  * @title Forward
@@ -33,7 +33,6 @@ contract ForwardBase is Initializable {
     /**
      * @dev This sets the PriceFeed from the provided address to initialize the contract.
      */
-
     function initialize(address priceFeedAddress) public initializer {
         _priceFeed = PriceFeed(priceFeedAddress);
     }
