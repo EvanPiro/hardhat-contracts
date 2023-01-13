@@ -38,7 +38,7 @@ describe("Contract.sol", function () {
 4. Fill in `describe` blocks with `it` assertions for event tests:
 
 ```typescript
-it("had a behavior", async function () {
+it("<add an assertion>", async function () {
     const { contract } = await loadFixture(launchPriceFeeder);
     expect(false)
       .to.equal(true)
