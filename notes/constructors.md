@@ -26,3 +26,28 @@ contract Derived3 is Base2, Base1 {
     constructor() Base1() Base2() {}
 }
 ```
+
+## More on Inheritance
+
+The following does not work because the constructor of `C` needs to be redefined by the extending contract `CExt` in order for `CExtChild` to use it:
+```solidity
+contract C {
+    uint id;
+    constructor(uint _id) {
+        id = _id;
+    }
+}
+
+contract CExt is C {
+
+}
+
+/**
+error[7927]: TypeError: Wrong argument count for constructor call: 1 arguments given but expected 0. Remove parentheses if you do not want to provide arguments here.
+ --> src/CBaseExt.sol:18:23:
+**/
+
+contract CExtChild is CExt(1) {
+}
+
+```
