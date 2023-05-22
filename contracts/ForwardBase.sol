@@ -12,7 +12,7 @@ import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Ini
  * counterparty to counter the hedge.
  * @dev
  * The following steps are implemented:
- * 1. Party A sends n ETH. The current USD price of ETH, p0, is captured.
+ * 1. Party A sends n ETH and the proposed contract expiration time. The current USD price of the n ETH, p0, is captured.
  * 2. Party B sends n ETH. The funds are now locked until the unlock time.
  * 4. At unlock time, get the current price, p1, and send p0 * n / p1 to A and the rest to B.
  *
